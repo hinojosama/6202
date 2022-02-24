@@ -14,9 +14,9 @@ on: [push,pull_request]
 jobs:
   deploy-shiny:
     runs-on: ubuntu-latest
-    environment: default_env #this is what we named the environment in github
+    environment: default_env
     env:
-      SHINYAPPS_TOKEN: ${{ secrets.SHINYAPPS_TOKEN }} #we generated these in shiny and copied into github tokens
+      SHINYAPPS_TOKEN: ${{ secrets.SHINYAPPS_TOKEN }}
       SHINYAPPS_SECRET: ${{ secrets.SHINYAPPS_SECRET }}
       GITHUB_PAT: ${{ secrets.GH_PAT }}
     steps:
