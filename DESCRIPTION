@@ -87,6 +87,7 @@ Imports:
   rlang,
   sass,
   scales,
+  shinythemes,
   sourcetools,
   stringi,
   sys,
