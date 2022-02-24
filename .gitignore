@@ -1,0 +1,13 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+.DS_Store
+*.tsv
+*.csv
+*.xls
+*.zip
+*.xlsx
+*.pdf
+*.html
+test_dotplot.R
