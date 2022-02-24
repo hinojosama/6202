@@ -10,30 +10,14 @@ shinyServer(function(input, output) {
      # begin making ycol content using lapply to apply a function to a list
      # in this case we are making the list with seq_along function and 
      # user generated/ selected content input$variables. Then the function
-     # colourInput will be applied to that list. ??Why does it need the
-     # "function(vv)"? why not just have the second argument as the function?
+     # colourInput will be applied to that list. 
      lapply(seq_along(input$variables), 
             function(vv) 
-              
-              #the colourInput function accepts the following arguments:
-              # inputId, 
-              # label,
-              # value = "white",
-              # showColour = c("both", "text", "background"),
-              # palette = c("square", "limited"),
-              # allowedCols = NULL,
-              # allowTransparent = FALSE,
-              # returnName = FALSE,
-              # closeOnClick = FALSE
-      
               colourInput(
                 inputId = paste0(input$variables [vv], "_color"),
                 label = "specify color",
-                palette = "limited", #must be set to limited for 
-                # allowedCols to work
+                palette = "limited", 
                 allowedCols = hcl.colors(12, palette = "Dark 3")
-                # allowedCols would not directly take = "Dark 3" probably 
-                # because the length is not specified
                 # hcl.colors makes a vector of first argument specified length 
                 # using pre-selected colors from existing palette
                   ))
