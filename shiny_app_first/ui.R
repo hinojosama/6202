@@ -8,7 +8,7 @@ library(plotly)
 shinyUI(fluidPage(theme = shinytheme("superhero"),
 
     # Application title
-    titlePanel("Test of realtime"), #"Shiny COVID19 Dashboard"),
+    titlePanel("Test of realtime 2.0"), #"Shiny COVID19 Dashboard"),
 
     # Sidebar with inputs and outputs as below in the panel
     sidebarLayout(
