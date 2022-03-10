@@ -7,7 +7,7 @@ library(plotly)
 #theme = shinytheme("superhero"),
 shinyUI(fluidPage(titlePanel("Shiny COVID19 Dashboard"),
       tabsetPanel(
-      tabPanel(
+      tabPanel("The Name",
         sidebarLayout(
           sidebarPanel(
             selectInput('variables', "Select plot(s)", colnames(dat1)[-(1:3)],
@@ -23,11 +23,11 @@ shinyUI(fluidPage(titlePanel("Shiny COVID19 Dashboard"),
           uiOutput("ycol")),
           # outputs the "ycol" content generated in server in the sidebar
 
-        mainPanel(
-          plotlyOutput("distPlot"))
+        mainPanel(fluidRow(column(10,
+          plotlyOutput("distPlot"))))
         )),
       tabPanel(title = "TESTpanel2"),
-      tabPanel(title = "TESTpanel3", plotlyOutput("distPlot")),
-      type = "tabs" #value = 2,
+      tabPanel(title = "TESTpanel3"),
+      #type = "tabs" #value = 2,
     )
 ))
