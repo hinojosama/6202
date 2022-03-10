@@ -4,16 +4,13 @@ library(colourpicker)
 library(shinyBS)
 library(plotly)
 
-
-shinyUI(fluidPage(theme = shinytheme("superhero"),
-
-    # Application title
-    titlePanel("Test of realtime 2.0"), #"Shiny COVID19 Dashboard"),
-
-    # Sidebar with inputs and outputs as below in the panel
-    sidebarLayout(
-        sidebarPanel(
-          selectInput('variables', "Select plot(s)", colnames(dat1)[-(1:3)],
+#theme = shinytheme("superhero"),
+shinyUI(fluidPage(titlePanel("Shiny COVID19 Dashboard"),
+      tabsetPanel(
+      tabPanel(
+        sidebarLayout(
+          sidebarPanel(
+            selectInput('variables', "Select plot(s)", colnames(dat1)[-(1:3)],
                       multiple = TRUE,
                       selectize = TRUE,
                       selected = colnames(dat1)[4]),
@@ -26,6 +23,11 @@ shinyUI(fluidPage(theme = shinytheme("superhero"),
           uiOutput("ycol")),
           # outputs the "ycol" content generated in server in the sidebar
 
-        mainPanel(plotlyOutput("distPlot"))
+        mainPanel(
+          plotlyOutput("distPlot"))
+        )),
+      tabPanel(title = "TESTpanel2"),
+      tabPanel(title = "TESTpanel3", plotlyOutput("distPlot")),
+      type = "tabs" #value = 2,
     )
 ))
