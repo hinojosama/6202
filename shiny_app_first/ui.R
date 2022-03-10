@@ -27,7 +27,15 @@ shinyUI(fluidPage(titlePanel("Shiny COVID19 Dashboard"),
           plotlyOutput("distPlot"))))
         )),
       tabPanel(title = "TESTpanel2"),
-      tabPanel(title = "TESTpanel3"),
-      #type = "tabs" #value = 2,
-    )
-))
+      tabPanel(title = "TESTpanel3",
+              sidebarLayout(
+                sidebarPanel(
+                  selectInput('variables', "Select plot(s)", colnames(dat1)[-(1:3)],
+                              multiple = TRUE,
+                              selectize = TRUE,
+                              selected = colnames(dat1)[4]),
+                  uiOutput("ycol_test")),
+                  mainPanel(fluidRow(column(10,
+                                            plotlyOutput("distPlot_test"))))
+                )))
+    ))
