@@ -2,7 +2,14 @@ library(dplyr)
 library(rio)
 library(jsonlite)
 library(ggplot2)
+library(shiny)
+library(colourpicker)
+library(shinythemes)
+library(shinyBS)
+library(plotly)
+library(gt)
 library(rCharts)
+library(gtExtras)
 
 if(!file.exists("cached_data.tsv")) {
 
