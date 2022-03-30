@@ -10,6 +10,7 @@ library(plotly)
 library(gt)
 library(rCharts)
 library(gtExtras)
+library(tidyr)
 
 if(!file.exists("cached_data.tsv")) {
 

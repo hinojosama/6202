@@ -102,6 +102,7 @@ Imports:
   yaml,
   zip,
   gt
+  tidyr
 Remotes:
   ramnathv/rCharts,
   jthomasmock/gtExtras

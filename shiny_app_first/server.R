@@ -23,7 +23,24 @@ shinyServer(function(input, output) {
                   ))
 
    })
+   # gt_plot ----
+   output$gTable_test <- render_gt({
+     truncate_cols <- c("count_7_day_moving_avg", "change_in_7_day_moving_avg")
+     gt_preview(dat1) %>%
+       cols_hide(c("globalid", "objectid")) %>%
+       fmt_number(all_of(truncate_cols), decimals = 1) %>%
+       fmt_missing(columns = everything(), missing_text = "Got data?")%>%
+       data_color(columns = "total_case_daily_change",
+                  colors = scales::col_numeric(palette = c('green', 'red'),
+                                               domain = NULL)) %>%
+       tab_style(style = list(
+         cell_fill(color = "lightcyan"), cell_text(weight = "bold")),
+         locations = cells_body(columns = c(change_in_7_day_moving_avg),
+                                rows = change_in_7_day_moving_avg > 0)) %>%
+       cols_label(deaths_under_investigation = html("Deaths&nbsp;Under&nbsp;Investigation"))
+   })
 
+   # distPlot ----
    output$distPlot <- renderPlotly({
    print("starting render plot...")
 
@@ -55,7 +72,7 @@ shinyServer(function(input, output) {
               ))
 
    })
-
+#quick copy for tab 3 to test, doesnt plot yet
    output$distPlot_test <- renderPlotly({
      print("starting render plot...")
 
@@ -69,7 +86,6 @@ shinyServer(function(input, output) {
 
    })
 
-output$dtable_test <- renderChart({})
 
 
 })

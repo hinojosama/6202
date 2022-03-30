@@ -26,7 +26,8 @@ shinyUI(fluidPage(titlePanel("Shiny COVID19 Dashboard"),
         mainPanel(fluidRow(column(10,
           plotlyOutput("distPlot"))))
         )),
-      tabPanel(title = "TESTpanel2"),
+      tabPanel(title = "TESTpanel2", gt_output("gTable_test")),
+
       tabPanel(title = "TESTpanel3",
               sidebarLayout(
                 sidebarPanel(
