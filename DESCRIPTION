@@ -101,7 +101,7 @@ Imports:
   xtable,
   yaml,
   zip,
-  gt
+  gt,
   tidyr
 Remotes:
   ramnathv/rCharts,
