@@ -11,6 +11,7 @@ library(gt)
 library(rCharts)
 library(gtExtras)
 library(tidyr)
+library(flashlight)
 
 #if else function to check for local cache of the JSON scraped COVID data
 #if it is not found use fromJSON function to create dat0
@@ -49,3 +50,6 @@ dat2_pvt$name
 #make vectors of columns to later exclude from our tables.
 hide <-c("globalid", "objectid")
 hide_spark <- c(hide, "reporting_date")
+
+#vector of models
+model_vec <- c("lm", "loess")

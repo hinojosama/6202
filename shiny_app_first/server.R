@@ -118,8 +118,22 @@ shinyServer(function(input, output) {
 
    })
 
-   #Debug----
+   #debug----
    observe({if(input$debug> 0) browser()})
+
+   #flashlight----
+   #
+   output$flash_out <- some_render_func({...})
+
+   switch(input$model_vec, lm = ... , loes = ... , etc. )
+
+   output$model_sel <- renderUI({
+
+
+   })
+
+
+
 
 
 #closes the shiny server function code block

@@ -9,7 +9,9 @@ library(plotly)
 shinyUI(fluidPage(titlePanel("Shiny COVID19 Dashboard"),
       #selected tabsetPanel layout, various options available
       tabsetPanel(
-      tabPanel("The Name",
+
+#tab1 Covid Plots----
+      tabPanel("Covid data plots",
         #sidebarLayout selected other options available
         sidebarLayout(
           sidebarPanel(
@@ -33,13 +35,14 @@ shinyUI(fluidPage(titlePanel("Shiny COVID19 Dashboard"),
           plotlyOutput("distPlot"))))
         )),
 
+#tab2 GT Extras----
       #next tab panel, its label, and calling the gTable_test output variable
       #again called from server
-      tabPanel(title = "TESTpanel2", gt_output("gTable_test")),
+      tabPanel(title = "GT table", gt_output("gTable_test")),
 
       #next tab panel, layout specification, and an input select section using
       #selectInput functions to generate the gt_var and gt_col the server will call
-      tabPanel(title = "TESTpanel3",
+      tabPanel(title = "GT Extras ~ sparklines",
               sidebarLayout(
                 sidebarPanel(
                   selectInput('gt_var', "Select Variable", dat2_pvt$name,
@@ -55,6 +58,27 @@ shinyUI(fluidPage(titlePanel("Shiny COVID19 Dashboard"),
                 mainPanel(fluidRow(column(10,
                                             gt_output("distPlot_test"))))
                 )),
+#tab3 Debug----
       tabPanel(title = "debug",
-               actionButton("debug", "DEBUG"))
-      )))
+               actionButton("debug", "DEBUG")),
+#tab4 Flashlight----
+      tabPanel(title = "Flashlight Panel",
+               sidebarLayout(
+                 sidebarPanel(
+                   selectInput('variables', "Select variable", colnames(dat1)[-(1:3)],
+                              multiple = F,
+                              selectize = TRUE,
+                              selected = colnames(dat1)[4]),
+                   selectInput('model_sel', "Select model", model_vec,
+                               multiple = F,
+                               selectize = TRUE,
+                               selected = model_vec[1])),
+                 #in the main panel will have two rows, one with model_plot output
+                 #and one with flash_out output called from server
+                 mainPanel(fluidRow(column(10,
+                                           plotlyOutput("model_plot"))),
+                 fluidRow(column(5, "flash_out"))))
+)#closes tabPanel4
+)#closes tabsetPanel function
+)#closes fluidpage function
+)#closes shinyUI function
