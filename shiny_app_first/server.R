@@ -5,7 +5,7 @@ library(colourpicker)
 #reactivity in this environment. Print to console when starts
 shinyServer(function(input, output) {
     print("starting shiny server...")
-
+   #ycol output----
    # assign output ycol and use render function to generate its content
    output$ycol <- renderUI({
 
@@ -59,6 +59,7 @@ shinyServer(function(input, output) {
    # assign output distPlot and use renderPlotly function to generate its content
    output$distPlot <- renderPlotly({
    print("starting render plot...")
+     #need(dat1, input$variables, message = "processing")
 
      #for each input$variable the user selects apply geom_line function to
      #its corresponding data
@@ -116,6 +117,9 @@ shinyServer(function(input, output) {
     out
 
    })
+
+   #Debug----
+   observe({if(input$debug> 0) browser()})
 
 
 #closes the shiny server function code block

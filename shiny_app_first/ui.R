@@ -54,5 +54,7 @@ shinyUI(fluidPage(titlePanel("Shiny COVID19 Dashboard"),
                 #from server
                 mainPanel(fluidRow(column(10,
                                             gt_output("distPlot_test"))))
-                )))
-    ))
+                )),
+      tabPanel(title = "debug",
+               actionButton("debug", "DEBUG"))
+      )))
