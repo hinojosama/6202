@@ -101,7 +101,8 @@ Imports:
   xtable,
   yaml,
   zip,
-  gt
+  gt,
+  flashlight
 Remotes:
   ramnathv/rCharts,
   jthomasmock/gtExtras
