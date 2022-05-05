@@ -32,14 +32,15 @@ shinyUI(fluidPage(titlePanel("Shiny COVID19 Dashboard"),
         #in the main panel section the column width is 10
         mainPanel(fluidRow(column(10,
           #the main panel will plot output variable distPlot called from server
-          plotlyOutput("distPlot"))))
+          plotlyOutput("covid_plots"))))
         )),
 
-#tab2 GT Extras----
+#tab2 GT table----
       #next tab panel, its label, and calling the gTable_test output variable
       #again called from server
       tabPanel(title = "GT table", gt_output("gTable_test")),
 
+#tab3 GT Extras----
       #next tab panel, layout specification, and an input select section using
       #selectInput functions to generate the gt_var and gt_col the server will call
       tabPanel(title = "GT Extras ~ sparklines",
@@ -56,16 +57,17 @@ shinyUI(fluidPage(titlePanel("Shiny COVID19 Dashboard"),
                   #in the main panel using gt_ouput function plot distPlot_test called
                 #from server
                 mainPanel(fluidRow(column(10,
-                                            gt_output("distPlot_test"))))
+                                            gt_output("gt_extras"))))
                 )),
-#tab3 Debug----
+#tab4 Debug----
       tabPanel(title = "debug",
                actionButton("debug", "DEBUG")),
-#tab4 Flashlight----
+
+#tab5 Flashlight----
       tabPanel(title = "Flashlight Panel",
                sidebarLayout(
                  sidebarPanel(
-                   selectInput('variables', "Select variable", colnames(dat1)[-(1:3)],
+                   selectInput('var_fl', "Select variable", colnames(dat1)[-(1:3)],
                               multiple = F,
                               selectize = TRUE,
                               selected = colnames(dat1)[4]),
