@@ -113,31 +113,33 @@ shinyServer(function(input, output) {
    output$model_plot <- renderPlotly({
 
      print("starting render plot...")
-     #browser()
 
      #model logic----
      model_df <- dat1 %>%
        mutate(day=as.numeric(as.Date(reporting_date)-min(as.Date(reporting_date)))) %>%
        select(day, input$var_fl)
 
-     model_fit <- lm(input$var_fl ~ poly(day, degree = 3, raw = TRUE), data = model_df)
+     model_fit <- sprintf('lm( %s ~ poly(day, degree = 8, raw = TRUE), data = model_df )',
+                          input$var_fl) %>% parse(text=.) %>% eval()
+
+
      # model_fit <- switch(input$model_sel,
      # lm = lm(input$var_fl ~ poly("reporting_date", degree = 3, raw = TRUE), data = model_df),
      # loess = loess("reporting_date" ~ input$var_fl, model_df))
 
-     model_pred <- predict(model_fit)
+     model_pred <- predict(model_fit, newdata = model_df, na.action = na.exclude)
 
      #model_plot----
-     plt <- ggplot(model_df, aes_string(y = input$var_fl, x = day)) +
+     plt <- ggplot(model_df, aes_string(y = input$var_fl, x = "day")) +
        geom_line(color = "black", size = .5) +
-       geom_line(aes(x = day, y = model_pred, color = "red", size = .35)) +
+       geom_line(aes(x = day, y = model_pred), color = "red", size = .35) +
        ylab("Counts")
      ggplotly(plt)%>%
        layout(dragmode='select')
    })
 
 
-   # output$flash_out <- "some_render_func({
+   # output$flash_out <- "renderPrint({
    # flashlight(model = model_fit, data = model_df, y = input$var_fl, label = 'some label')
    # })"
 
@@ -167,3 +169,9 @@ shinyServer(function(input, output) {
 #            ))
 #
 # })
+
+
+
+#manually set the expression as a formula
+#lm(reformulate('poly(day, degree = 3, raw = TRUE)', input$var_fl, env = model_df), data = model_df )
+#model_fit$call$formula <- eval(model_fit$call$formula)
